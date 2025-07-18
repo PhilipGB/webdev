@@ -26,14 +26,14 @@ function App() {
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body: encode({ 'form-name': 'contact', ...contactFormData }),
     })
-      .then(() => alert('Success!'))
+      .then(() => {
+        console.log(contactFormData);
+        alert('Success!');
+      })
       .catch((error) => alert(error));
 
     e.preventDefault();
   };
-
-  const handleChange = (e) =>
-    setContactFormData({ [e.target.name]: e.target.value });
 
   return (
     <div className='min-h-screen w-full text-gray-800 dark:text-gray-200 overflow-x-hidden'>
@@ -245,7 +245,12 @@ function App() {
                     className='mt-1 block w-full p-3 rounded-md bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 text-gray-900 dark:text-gray-200 focus:ring-blue-500 focus:border-blue-500'
                     placeholder='Your Name'
                     value={contactFormData.name}
-                    onChange={handleChange}
+                    onChange={(e) =>
+                      setContactFormData({
+                        ...contactFormData,
+                        name: e.target.value,
+                      })
+                    }
                   />
                 </div>
                 <div>
@@ -262,7 +267,12 @@ function App() {
                     className='mt-1 block w-full p-3 rounded-md bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 text-gray-900 dark:text-gray-200 focus:ring-blue-500 focus:border-blue-500'
                     placeholder='your.email@example.com'
                     value={contactFormData.email}
-                    onChange={handleChange}
+                    onChange={(e) =>
+                      setContactFormData({
+                        ...contactFormData,
+                        email: e.target.value,
+                      })
+                    }
                   />
                 </div>
                 <div>
@@ -279,7 +289,12 @@ function App() {
                     className='mt-1 block w-full p-3 rounded-md bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 text-gray-900 dark:text-gray-200 focus:ring-blue-500 focus:border-blue-500'
                     placeholder='Project Inquiry, Support, etc.'
                     value={contactFormData.subject}
-                    onChange={handleChange}
+                    onChange={(e) =>
+                      setContactFormData({
+                        ...contactFormData,
+                        subject: e.target.value,
+                      })
+                    }
                   />
                 </div>
                 <div>
@@ -296,7 +311,12 @@ function App() {
                     className='mt-1 block w-full p-3 rounded-md bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 text-gray-900 dark:text-gray-200 focus:ring-blue-500 focus:border-blue-500'
                     placeholder='Tell us about your project or question...'
                     value={contactFormData.message}
-                    onChange={handleChange}
+                    onChange={(e) =>
+                      setContactFormData({
+                        ...contactFormData,
+                        message: e.target.value,
+                      })
+                    }
                   ></textarea>
                 </div>
                 <button
