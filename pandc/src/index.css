@@ -1,0 +1,21 @@
+body {
+  font-family: 'Inter', sans-serif;
+}
+/* Custom scrollbar for a more modern look */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background-color: rgba(156, 163, 175, 0.5);
+  border-radius: 20px;
+  border: 3px solid transparent;
+}
+html.dark ::-webkit-scrollbar-thumb {
+  background-color: rgba(107, 114, 128, 0.5);
+}
+
+@import 'tailwindcss';
+@custom-variant dark (&:is(.dark *));

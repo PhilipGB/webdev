@@ -1,0 +1,14 @@
+[
+  {
+    "serviceName": "Web Design",
+    "serviceDetails": "Crafting visually stunning and user-friendly websites that capture your brand's essence and engage your audience. We focus on intuitive navigation and modern aesthetics."
+  },
+  {
+    "serviceName": "eCommerce Solutions",
+    "serviceDetails": "Building robust and secure online stores designed to maximize sales and provide a seamless shopping experience for your customers. From product listings to secure payment gateways, we handle it all."
+  },
+  {
+    "serviceName": "SEO Optimization",
+    "serviceDetails": "Improving your website's visibility on search engines to drive organic traffic and attract more potential customers. Our strategies include keyword research, on-page optimization, and technical SEO."
+  }
+]
