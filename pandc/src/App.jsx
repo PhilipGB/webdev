@@ -1,9 +1,40 @@
+import { useState } from 'react';
 import services from './data/services.json';
 import { glassmorphismStyle } from './styles/Glassmorphism.jsx';
 import Footer from './components/Footer.jsx';
 import Header from './components/Header.jsx';
 
 function App() {
+  const [contactFormData, setContactFormData] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: '',
+  });
+
+  const encode = (data) => {
+    return Object.keys(data)
+      .map(
+        (key) => encodeURIComponent(key) + '=' + encodeURIComponent(data[key])
+      )
+      .join('&');
+  };
+
+  const handleSubmit = (e) => {
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: encode({ 'form-name': 'contact', ...contactFormData }),
+    })
+      .then(() => alert('Success!'))
+      .catch((error) => alert(error));
+
+    e.preventDefault();
+  };
+
+  const handleChange = (e) =>
+    setContactFormData({ [e.target.name]: e.target.value });
+
   return (
     <div className='min-h-screen w-full text-gray-800 dark:text-gray-200 overflow-x-hidden'>
       {/* Background Gradient Decoration */}
@@ -199,7 +230,7 @@ function App() {
               <h3 className='text-2xl font-bold text-gray-900 dark:text-white mb-4'>
                 Send Us a Message
               </h3>
-              <form className='space-y-4' method='post'>
+              <form className='space-y-4' onSubmit={handleSubmit}>
                 <div>
                   <label
                     htmlFor='name'
@@ -213,6 +244,8 @@ function App() {
                     name='name'
                     className='mt-1 block w-full p-3 rounded-md bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 text-gray-900 dark:text-gray-200 focus:ring-blue-500 focus:border-blue-500'
                     placeholder='Your Name'
+                    value={contactFormData.name}
+                    onChange={handleChange}
                   />
                 </div>
                 <div>
@@ -228,6 +261,8 @@ function App() {
                     name='email'
                     className='mt-1 block w-full p-3 rounded-md bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 text-gray-900 dark:text-gray-200 focus:ring-blue-500 focus:border-blue-500'
                     placeholder='your.email@example.com'
+                    value={contactFormData.email}
+                    onChange={handleChange}
                   />
                 </div>
                 <div>
@@ -243,6 +278,8 @@ function App() {
                     name='subject'
                     className='mt-1 block w-full p-3 rounded-md bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 text-gray-900 dark:text-gray-200 focus:ring-blue-500 focus:border-blue-500'
                     placeholder='Project Inquiry, Support, etc.'
+                    value={contactFormData.subject}
+                    onChange={handleChange}
                   />
                 </div>
                 <div>
@@ -258,6 +295,8 @@ function App() {
                     rows='4'
                     className='mt-1 block w-full p-3 rounded-md bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 text-gray-900 dark:text-gray-200 focus:ring-blue-500 focus:border-blue-500'
                     placeholder='Tell us about your project or question...'
+                    value={contactFormData.message}
+                    onChange={handleChange}
                   ></textarea>
                 </div>
                 <button
